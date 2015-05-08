@@ -57,4 +57,16 @@ feature 'posts' do
       expect(current_path).to eq '/posts'
     end
   end
+
+  context 'deleting posts' do
+
+    before {Post.create caption: 'Britney'}
+
+    scenario 'removes a post when a user clicks a delete link' do
+      visit '/posts'
+      click_link 'Delete Britney'
+      expect(page).not_to have_content 'Britney'
+      expect(page).to have_content 'Post deleted successfully'
+    end
+  end
 end
