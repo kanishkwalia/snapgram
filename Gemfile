@@ -48,5 +48,9 @@ group :development, :test do
 
   gem 'shoulda'
 
+  gem 'paperclip'
+
+  gem 'devise'
+
 end
 

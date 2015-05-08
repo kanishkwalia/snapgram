@@ -16,10 +16,11 @@
     <% else %>
       <p>No comments.</p>
 
+    <%= image_tag post.image.url, class: 'uploaded-pic' %>
     <% end %>
   <% end %>
 <% else %>
-  <h1>No posts yet</h1>
+  <p>No posts yet.</p>
 <% end %>
 
 <%= link_to "Add a post", new_post_path %>
