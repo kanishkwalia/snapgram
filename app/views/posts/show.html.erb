@@ -1,1 +1,14 @@
 <p><%= @post.caption %></p>
+<h3>Comments for <%= @post.caption %></h3>
+
+<% if @post.comments.any? %>
+  <ul>
+    <% @post.comments.each do |comment| %>
+      <li>
+        <%= comment.views %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No comments.</p>
+<% end %>
