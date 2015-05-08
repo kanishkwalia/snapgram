@@ -31,4 +31,30 @@ feature 'posts' do
       expect(current_path).to eq '/posts'
     end
   end
+
+  context 'viewing posts' do
+
+    let!(:britney){Post.create(caption:'Britney')}
+
+    scenario 'lets a user view a post' do
+      visit '/posts'
+      click_link 'Britney'
+      expect(page).to have_content 'Britney'
+      expect(current_path).to eq "/posts/#{britney.id}"
+    end
+  end
+
+  context 'editing posts' do
+
+    before {Post.create caption: 'Britney'}
+
+    scenario 'lets a user edit a post' do
+      visit '/posts'
+      click_link 'Edit Britney'
+      fill_in 'Caption', with: 'Hit me baby one more time!'
+      click_button 'Update Post'
+      expect(page).to have_content 'Hit me baby one more time!'
+      expect(current_path).to eq '/posts'
+    end
+  end
 end
